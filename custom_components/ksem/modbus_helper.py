@@ -188,6 +188,14 @@ class KsemModbusClient:
                     spec = SENSOR_DEFINITIONS[addr]
                     raw_regs = registers[offset : offset + size]
 
+                    # Gezielter Tausch: 
+                    # Nur wenn die Adresse im Wallbox-Bereich liegt (>= 40960)
+                    # UND es sich explizit um einen uint32 handelt.
+                    # int32 (wie Grid Power) bleibt so im Standard-Format (Big Endian).
+                    # uint32 wir mit little Endian geändert und getauscht.
+                    if addr >= 40960 and spec.get("type") == "uint32" and len(raw_regs) == 2:
+                        raw_regs = [raw_regs[1], raw_regs[0]]
+
                     try:
                         # Versuch 1: dein bisheriger Weg über DATATYPE/convert_from_registers
                         datatype_name = spec["type"].upper()
