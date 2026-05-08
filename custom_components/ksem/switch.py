@@ -6,8 +6,7 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
-
-async def async_setup_entry(hass, entry, async_add_entities):
+async def async_setup_entry(hass: HomeAssistant, entry, async_add_entities):
     data = hass.data[DOMAIN][entry.entry_id]
     wallbox_coordinator = data.get("wallbox_coordinator")  # kann None sein
     client = data["client"]
