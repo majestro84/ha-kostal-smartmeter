@@ -33,7 +33,7 @@ async def async_setup_entry(hass: HomeAssistant, entry, async_add_entities):
                         KsemChargePauseSwitch(wallbox_coordinator, client, wallbox_device_info, entry.entry_id, uuid)
                     )
     
-    async_add_entities([entities], update_before_add=False)
+    async_add_entities(entities, update_before_add=False)
 
 class BatteryUsageSwitch(CoordinatorEntity, SwitchEntity):
     def __init__(self, coordinator, client, device_info: DeviceInfo, entry_id: str):
