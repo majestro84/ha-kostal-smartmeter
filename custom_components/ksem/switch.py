@@ -16,7 +16,7 @@ async def async_setup_entry(hass, entry, async_add_entities):
     smartmeter_device_info = data.get("device_info")
     wallbox_device_info = data.get("wallbox_device_info")
 
-    if not coordinator:
+    if not wallbox_coordinator:
         _LOGGER.info(
             "Kein Wallbox-Coordinator vorhanden – BatteryUsageSwitch wird übersprungen."
         )
