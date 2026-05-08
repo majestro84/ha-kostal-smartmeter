@@ -13,7 +13,7 @@ jobs:
       contents: write
     steps:
       - name: 🛍️ Checkout the repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: 🐍 Setup Python
         uses: actions/setup-python@v6
@@ -34,7 +34,7 @@ jobs:
           mv ksem.zip '${{ github.workspace }}/ksem.zip'
 
       - name: ☁️ Upload zip to release
-        uses: softprops/action-gh-release@v2.3.3
+        uses: softprops/action-gh-release@v2.5.0
         if: ${{ github.event_name == 'release' }}
         with:
           files: "${{ github.workspace }}/ksem.zip"
